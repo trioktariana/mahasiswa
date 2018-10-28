@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>data mahasiswa</title>
+	<link rel="stylesheet" href="/asset/css/bootstrap.min.css">
+	<script src="/asset/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container">
+	{{#if locals.message}}
+		{{#if message.nahloh}}
+		<div class="alert alert-warning" role="alert">
+			{{message.nahloh}}
+		</div>
+		{{/if}}
+		{{#if gapapa}}
+		<div class="alert alert-danger" role="alert">
+			{{gapapa}}
+		</div>
+		{{/if}}
+	{{/if}}
+	<a href="/mahasiswa/add" class="btn btn-primary">tambah</a><br><br>
+	<table class="table table-bordered">
+		<thead>
+			<tr>
+				<th>id</th>
+				<th>nama</th>
+				<th>npm</th>
+				<th>prodi</th>
+				<th>jurusan</th>
+				<th>aksi</th>
+			</tr>
+		</thead>
+		<tbody>
+			{{#each result}}
+			<tr>
+				<td>{{ id_mahasiswa }}</td>
+				<td>{{ nama }}</td>
+				<td>{{ npm }}</td>
+				<td>{{ namaprodi }}</td>
+				<td>{{ namajurusan }}</td>
+				<td>
+					<a class="btn btn-warning btn-xs" href="/mahasiswa/update/{{ id_mahasiswa }}">edit</a>
+					<a class="btn btn-danger btn-xs" href="/mahasiswa/hapus/{{ id_mahasiswa }}">hapus</a>
+				</td>
+			</tr>
+			{{/each}}
+		</tbody>
+	</table>
+</div>
+</body>
+</html>

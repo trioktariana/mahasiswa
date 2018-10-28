@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>data mahasiswa</title>
+	<script type="text/javascript" src="angular.js"></script>
+</head>
+<body ng-app="appJajal">
+<div class="container" align="center">
+<h1>ANGULAR COBA-COBA</h1>
+	<br>
+	silahkan cari: <input type="search" ng-model="cari"><br><br>
+	<table border="1">
+		<thead>
+			<tr>
+				<th>id</th>
+				<th>nama</th>
+				<th>npm</th>
+				<th>prodi</th>
+				<th>jurusan</th>
+			</tr>
+		</thead>
+		<tbody ng-controller="controllerJajal">
+			<tr ng-repeat="mhs in cek = (result.data | filter : cari)"> 
+				<td>{{ mhs.id_mahasiswa }}</td>
+				<td>{{ mhs.nama }}</td>
+				<td>{{ mhs.npm }}</td>
+				<td>{{ mhs.namaprodi }}</td>
+				<td>{{ mhs.namajurusan }}</td>
+			</tr>
+			<tr ng-if="cek.length == 0">
+				<td colspan="5"> gada</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+</body>
+</html>
+<script type="text/javascript">
+var app = angular.module('appJajal',[]);
+
+	app.controller('controllerJajal', function($scope, $http){
+    	$http.get('mahasiswa.php')
+       	.then(function(data) {
+	        $scope.result = data;
+	        console.log($scope.result);
+    	});
+});
+</script> 
